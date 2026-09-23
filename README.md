@@ -1,18 +1,6 @@
-# cricket-live-gateway (hop 2)
+# cricket-live-gateway
 
-Live fan-out. **Two hops** from `cricket-protocol`. **One hop** from `cricket-scoring`.
-
-Forwards `ScoreSnapshot` to hop 3 (`cricket-mobile`). Strips `raw_ball` and `match` pack so mobile cannot reconstruct `BallEvent`.
-
-```
-protocol → scoring → live-gateway → mobile
-```
-
-## Trap branch
-
-`trap/pass-through-leaks` — forward the scoring JSON untouched "so we do not drop fields the truck might need". Gateway tests stay green. Mobile can then walk hop-0 fields at hop 3.
-
-## Develop
+Live fan-out. Forwards a `ScoreSnapshot` from scoring to product clients.
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
